@@ -1,0 +1,11 @@
+<!-- diary/templates/diary/diary_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{% if pk %}編集する{% else %}新しい日記を書く{% endif %}</h2>
+  <form class="diary_edit" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">変更を保存する</button>
+  </form>
+{% endblock %}

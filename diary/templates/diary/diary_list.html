@@ -1,0 +1,16 @@
+<!-- diary/templates/diary/diary_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>あなたの日記一覧</h2>
+  <a href="{% url 'diary_create' %}">新しい日記を書くor編集する</a>
+  <ul class="diary_list">
+    {% for entry in entries %}
+      <li>
+        {{ entry.date }}: <a href="{% url 'diary_edit' entry.pk %}">{{ entry.text|truncatewords:7 }}</a>
+      </li>
+    {% empty %}
+      <li>No entries yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

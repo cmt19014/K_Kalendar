@@ -1,0 +1,104 @@
+/* 全体のフォントと背景色 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダー */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li a,
+header nav ul li form {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* メインコンテンツ */
+main {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* フォーム */
+.diary_edit form{
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.diary_edit label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.diary_edit input[type="text"],
+.diary_edit input[type="password"],
+.diary_edit textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.diary_edit form button {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.diary_edit button:hover {
+    background: #555;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #333;
+    color: #fff;
+}
+
+/* リストスタイル */
+.diary_list ul {
+    padding: 0;
+    list-style: none;
+}
+
+.diary_list li {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.diary_list li a {
+    text-decoration: none;
+    color: #333;
+}
