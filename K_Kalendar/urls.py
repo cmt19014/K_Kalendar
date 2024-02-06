@@ -21,13 +21,10 @@ from diary.views import UserLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('diary.urls')),
-    # path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-     path('login/', UserLoginView.as_view(), name='login'),
-    # path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='/login/'), name='logout'),
+    path('', UserLoginView.as_view(), name='login'),  # ルートURLをログインページに設定
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
-    # path('accounts/login/', UserLoginView.as_view(), name='user_login'),
-    # 他のURLパターンがあればここに追加
+    path('', include('diary.urls')),  # この行は他のURL設定の後に移動
 ]
+
 

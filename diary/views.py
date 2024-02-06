@@ -23,6 +23,7 @@ def signup(request):
 # 通常のユーザー向けのログインビュー
 class UserLoginView(auth_views.LoginView):
     template_name = 'registration/user_login.html'  # ログインテンプレートのパスを指定
+    success_url = 'diary_list/'  # ログイン成功後のリダイレクト先
 
 @login_required
 def diary_list(request):
