@@ -24,7 +24,7 @@ urlpatterns = [
     path('', UserLoginView.as_view(), name='login'),  # ルートURLをログインページに設定
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('diary.urls')),  # この行は他のURL設定の後に移動
+    path('diary/', include('diary.urls')),  # この行は他のURL設定の後に移動
 ]
 
 

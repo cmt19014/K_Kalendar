@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tl8&k5y18v)z$&j4a^$t-!3ctop@xzl#$$$(1#he5g!3zdux(4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -128,7 +128,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'diary/static'),]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-LOGIN_REDIRECT_URL = '/diary_list/' 
+LOGIN_REDIRECT_URL = '/diary/diary_list/' 
 LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type

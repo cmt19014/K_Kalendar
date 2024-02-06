@@ -102,3 +102,64 @@ footer {
     text-decoration: none;
     color: #333;
 }
+
+
+/* カレンダーコントロール */
+#calendar-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#calendar-controls button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#calendar-controls button:hover {
+    background-color: #555;
+}
+
+/* カレンダー全体のスタイル */
+.calendar-row,
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #ddd;
+    padding: 10px;
+}
+
+/* 日付セルのスタイル */
+#calendar div {
+    background-color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* 日付セルにカーソルを合わせた時 */
+#calendar div:not(.day-name):hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* 曜日のスタイル（カーソルのスタイルはJavaScriptで制御） */
+.day-name {
+    cursor: default;
+}
+.sunday {
+    color: red;
+}
+.saturday {
+    color: blue;
+}
+
+
+/* 日記が存在する日付のセルの背景色 */
+.diary-exists {
+    background-color: #a0e0a0; /* 例えば、淡い緑色 */
+}

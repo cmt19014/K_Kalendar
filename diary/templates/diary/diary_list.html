@@ -3,14 +3,18 @@
 
 {% block content %}
   <h2>あなたの日記一覧</h2>
-  <a href="{% url 'diary_create' %}">新しい日記を書くor編集する</a>
-  <ul class="diary_list">
-    {% for entry in entries %}
-      <li>
-        {{ entry.date }}: <a href="{% url 'diary_edit' entry.pk %}">{{ entry.text|truncatewords:7 }}</a>
-      </li>
-    {% empty %}
-      <li>No entries yet.</li>
-    {% endfor %}
-  </ul>
+  <div id="calendar-controls">
+      <button id="prev-month">前の月</button>
+      <span id="current-year-month"></span>
+      <button id="next-month">次の月</button>
+  </div>
+  <div id="calendar"></div>
+
+  <script type="text/javascript">
+    // サーバーサイドから日記が存在する日付のリストをJavaScriptに渡す
+    var diaryDates = {{ diary_dates_json|safe }};
+  </script>
+
 {% endblock %}
+
+
