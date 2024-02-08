@@ -2,7 +2,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>あなたの日記一覧</h2>
+<div style="text-align: right; margin: 20px;">
+  <a href="{% url 'download_diary' %}" class="btn-download" id="downloadBtn">日記内容をダウンロード</a>
+</div>
+<h1 style="text-align: center;">{{ user.username }}-Kalendar</h1>
+<p style="text-align: center; ">日付を選択して日記を書こう！</p>
   <div id="calendar-controls">
       <button id="prev-month">前の月</button>
       <span id="current-year-month"></span>
@@ -13,6 +17,14 @@
   <script type="text/javascript">
     // サーバーサイドから日記が存在する日付のリストをJavaScriptに渡す
     var diaryDates = {{ diary_dates_json|safe }};
+  </script>
+  <script>
+    document.getElementById('downloadBtn').addEventListener('click', function(e) {
+        e.preventDefault(); // デフォルトの動作を防ぐ
+        const userName = "{{ user.username }}"; // Djangoテンプレートからユーザー名を取得
+        alert(`日記内容をダウンロードしました。ChatGPTなどに入力してあなたの分身AI「${userName}-Klone」を作ってみよう！`);
+        window.location.href = this.href; // 実際にダウンロードを実行
+    });
   </script>
 
 {% endblock %}

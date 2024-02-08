@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function renderCalendar() {
-
+        console.log("enterfunc");
+        console.log(diaryDates);
         calendarEl.innerHTML = ''; // カレンダーをクリア
         let year = currentDate.getFullYear();
         let month = currentDate.getMonth();
@@ -43,10 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 1; i <= daysInMonth; i++) {
             let cell = document.createElement('div');
             cell.textContent = i;
-            let fullDate = `${year}-${month + 1}-${i}`;
-        
+            let fullDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
+            console.log(fullDate)
             // 日記が存在する日付の場合は特別なクラスを適用
             if (diaryDates.includes(fullDate)) {
+                console.log("!!!!!!!!")
                 cell.classList.add('diary-exists');
             }
         

@@ -141,6 +141,11 @@ footer {
     text-align: center;
 }
 
+/* 日記が存在する日付のセルの背景色 */
+#calendar .diary-exists {
+    background-color: #c4f4db; /* 例えば、淡い緑色 */
+}
+
 /* 日付セルにカーソルを合わせた時 */
 #calendar div:not(.day-name):hover {
     background-color: #f0f0f0;
@@ -158,8 +163,51 @@ footer {
     color: blue;
 }
 
+/* フォームのスタイル調整 */
+.diary_edit form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
 
-/* 日記が存在する日付のセルの背景色 */
-.diary-exists {
-    background-color: #a0e0a0; /* 例えば、淡い緑色 */
+/* テキストエリアのスタイル調整 */
+.modern-text {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Helvetica', 'Arial', sans-serif; /* モダンなフォント体 */
+    font-size: 16px; /* 読みやすいフォントサイズ */
+}
+
+/* ボタンのスタイル調整 */
+.diary_edit form button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.diary_edit form button:hover {
+    background: #0056b3;
+}
+
+.btn-download {
+    padding: 10px 15px;
+    background-color: #007bff; /* ブルー */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* リンクの下線を消す */
+    transition: background-color 0.3s;
+}
+
+.btn-download:hover {
+    background-color: #0056b3; /* 暗いブルー */
 }

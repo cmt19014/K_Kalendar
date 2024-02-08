@@ -11,6 +11,11 @@ from django.urls import reverse
 from django.db.models.functions import TruncDay
 from django.db.models import Count
 import json
+from django.utils.dateparse import parse_date
+from django.utils.formats import date_format
+import json
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
 
 def signup(request):
     if request.method == 'POST':
@@ -43,12 +48,6 @@ class UserLoginView(auth_views.LoginView):
 
 #     return render(request, 'diary/diary_list.html', {'diary_dates_json': diary_dates_json})
     # return render(request, 'diary/diary_list.html', {'entries': entries, 'diary_dates': diary_dates_list})
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from .models import DiaryEntry
-from django.utils.dateparse import parse_date
-import json
-from django.core.serializers.json import DjangoJSONEncoder
 
 @login_required
 def diary_list(request):
@@ -61,7 +60,7 @@ def diary_list(request):
 
     # 文字列のリストをJSONに変換
     diary_dates_json = json.dumps(diary_dates_str, cls=DjangoJSONEncoder)
-
+    print(diary_dates_json)
     return render(request, 'diary/diary_list.html', {'diary_dates_json': diary_dates_json})
 
 
@@ -101,7 +100,9 @@ def diary_edit(request, pk):
             return redirect('diary_list')
     else:
         form = DiaryEntryForm(instance=entry)
-    return render(request, 'diary/diary_form.html', {'form': form})
+        entry = get_object_or_404(DiaryEntry, pk=pk, user=request.user)
+        formatted_date = date_format(entry.date, "Y年n月j日")
+    return render(request, 'diary/diary_form.html', {'form': form, 'pk': pk, 'formatted_date': formatted_date})
 
 
 @login_required
@@ -122,4 +123,20 @@ def diary_create(request):
             if date:
                 initial['date'] = date  # フォームの日付フィールドの初期値として設定
         form = DiaryEntryForm(initial=initial)
-    return render(request, 'diary/diary_form.html', {'form': form})
+        date_str = request.GET.get('date')
+        date = parse_date(date_str) if date_str else None
+        formatted_date = date_format(date, "Y年n月j日") if date else ''
+
+    return render(request, 'diary/diary_form.html', {'form': form, 'formatted_date': formatted_date})
+
+@login_required
+def download_diary(request):
+    # ユーザーの日記エントリを取得
+    entries = DiaryEntry.objects.filter(user=request.user).order_by('date')
+    # テキストファイルの内容を生成
+    lines = ["{}, {}\n".format(entry.date.strftime('%Y-%m-%d'), entry.text) for entry in entries]
+    content = "".join(lines)
+    # レスポンスとしてテキストファイルを返す
+    response = HttpResponse(content, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename="diary_entries.txt"'
+    return response

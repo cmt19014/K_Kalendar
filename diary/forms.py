@@ -15,6 +15,10 @@ class DiaryEntryForm(forms.ModelForm):
         model = DiaryEntry
         fields = ['date', 'text']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
-            'text': forms.Textarea(attrs={'cols': 40, 'rows': 5}),
+            'text': forms.Textarea(attrs={'cols': 40, 'rows': 5, 'class': 'modern-text'}),
         }
+    
+    def __init__(self, *args, **kwargs):
+        super(DiaryEntryForm, self).__init__(*args, **kwargs)
+        self.fields['date'].widget = forms.HiddenInput()
+

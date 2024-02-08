@@ -1,11 +1,17 @@
 <!-- diary/templates/diary/diary_form.html -->
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block content %}
-  <h2>{% if pk %}編集する{% else %}新しい日記を書く{% endif %}</h2>
+  <h2>{{ formatted_date }}</h2>
+  <h3>{% if pk %}編集する{% else %}新しく日記を書く{% endif %}</h3>
   <form class="diary_edit" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.date }}
+    <div class="form-group">
+      <label for="id_text">テキスト:</label>
+      {{ form.text|add_class:'modern-text' }}
+    </div>
     <button type="submit">変更を保存する</button>
   </form>
 {% endblock %}

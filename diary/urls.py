@@ -8,5 +8,6 @@ urlpatterns = [
     path('create/', views.diary_create, name='diary_create'),  # 新規エントリの作成
     path('edit/<int:pk>/', views.diary_edit, name='diary_edit'),  # エントリの編集
     path('signup/', views.signup, name='signup'),
+    path('download_diary/', views.download_diary, name='download_diary'),
     # 他のURLパターンも必要に応じて追加
 ]
